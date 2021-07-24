@@ -23,11 +23,12 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
+@import "~styles/variables.styl"
 .header {
   display: flex;
   justify-content: space-between;
   line-height: 0.86rem;
-  background-color: #00bcd4;
+  background-color: $bgColor;
   color: #fff;
 
   .header-left {
