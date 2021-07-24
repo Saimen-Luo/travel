@@ -5,5 +5,6 @@ import store from "./store";
 
 import "./assets/styles/reset.css";
 import "./assets/styles/border.css";
+import "./assets/styles/iconfont.css";
 
 createApp(App).use(store).use(router).mount("#app");
