@@ -903,6 +903,25 @@
     "@babel/helper-validator-identifier" "^7.14.8"
     to-fast-properties "^2.0.0"
 
+"@better-scroll/core@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.nlark.com/@better-scroll/core/download/@better-scroll/core-2.4.1.tgz#1f67a9cfe6738f870be5b90b13aafcc188a01e3b"
+  integrity sha1-H2epz+Zzj4cL5bkLE6r8wYigHjs=
+  dependencies:
+    "@better-scroll/shared-utils" "^2.4.1"
+
+"@better-scroll/shared-utils@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.nlark.com/@better-scroll/shared-utils/download/@better-scroll/shared-utils-2.4.1.tgz#b5e4e751a023180f1123d2c3773c75a863f71f77"
+  integrity sha1-teTnUaAjGA8RI9LDdzx1qGP3H3c=
+
+"@better-scroll/slide@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.nlark.com/@better-scroll/slide/download/@better-scroll/slide-2.4.1.tgz?cache=0&sync_timestamp=1624517054723&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40better-scroll%2Fslide%2Fdownload%2F%40better-scroll%2Fslide-2.4.1.tgz#9086a5c9f20e76c275d940587c422547abb5b3e9"
+  integrity sha1-kIalyfIOdsJ12UBYfEIlR6u1s+k=
+  dependencies:
+    "@better-scroll/core" "^2.4.1"
+
 "@commitlint/cli@^12.1.4":
   version "12.1.4"
   resolved "https://registry.nlark.com/@commitlint/cli/download/@commitlint/cli-12.1.4.tgz?cache=0&sync_timestamp=1621842636693&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40commitlint%2Fcli%2Fdownload%2F%40commitlint%2Fcli-12.1.4.tgz#af4d9dd3c0122c7b39a61fa1cd2abbad0422dbe0"
