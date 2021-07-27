@@ -73,7 +73,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .slide-wrapper {
   position: relative;
   overflow: hidden;
