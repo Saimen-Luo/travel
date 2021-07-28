@@ -96,6 +96,7 @@ export default defineComponent({
 
 <style lang="stylus" scoped>
 @import '~styles/variables.styl';
+@import '~styles/mixins.styl';
 
 .slide-wrapper {
   overflow: hidden;
@@ -146,6 +147,7 @@ export default defineComponent({
         text-align: center;
         color: $darkTextColor;
         font-size: 0.28rem;
+        ellipsis();
       }
     }
   }
