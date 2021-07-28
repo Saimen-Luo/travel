@@ -118,6 +118,7 @@ export default defineComponent({
   width: 100%;
   padding-bottom: 50%;
   height: 0;
+  font-size: 0;
 
   .slide-page {
     overflow: hidden;
@@ -160,6 +161,7 @@ export default defineComponent({
         line-height: 0.44rem;
         text-align: center;
         color: $darkTextColor;
+        font-size: 0.28rem;
       }
     }
   }
