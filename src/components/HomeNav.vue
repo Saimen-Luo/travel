@@ -1,5 +1,5 @@
 <template>
-  <div class="slide-wrapper" ref="nav">
+  <div class="slide-wrapper" ref="slide">
     <div class="slide-content">
       <div class="slide-page" v-for="(page, index) in pages" :key="index">
         <div class="icon" v-for="icon in page" :key="icon.id">
@@ -14,11 +14,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, onMounted } from "vue";
-import BScroll from "@better-scroll/core";
-import Slide from "@better-scroll/slide";
-
-BScroll.use(Slide);
+import { computed, defineComponent } from "vue";
+import useSlide from "../composables/useSlide";
 
 interface icon {
   id: string;
@@ -77,20 +74,7 @@ const iconList: icon[] = [
 export default defineComponent({
   name: "HomeNav",
   setup() {
-    const nav = ref();
-    onMounted(() => {
-      new BScroll(nav.value, {
-        scrollX: true,
-        scrollY: false,
-        slide: {
-          loop: true,
-          autoplay: false,
-        },
-        momentum: false,
-        bounce: false,
-        probeType: 3,
-      });
-    });
+    const { slide } = useSlide();
     const pages = computed(() => {
       const result: icon[][] = [];
       iconList.forEach((item, index) => {
@@ -103,7 +87,7 @@ export default defineComponent({
       return result;
     });
     return {
-      nav,
+      slide,
       pages,
     };
   },
