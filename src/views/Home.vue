@@ -3,6 +3,7 @@
     <home-header />
     <home-carousel />
     <home-nav />
+    <home-recommend />
   </div>
 </template>
 
@@ -11,6 +12,7 @@ import { defineComponent } from "vue";
 import HomeHeader from "../components/HomeHeader.vue";
 import HomeCarousel from "../components/HomeCarousel.vue";
 import HomeNav from "../components/HomeNav.vue";
+import HomeRecommend from "../components/HomeRecommend.vue";
 
 export default defineComponent({
   name: "Home",
@@ -18,6 +20,7 @@ export default defineComponent({
     HomeHeader,
     HomeCarousel,
     HomeNav,
+    HomeRecommend,
   },
 });
 </script>
