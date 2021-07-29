@@ -78,9 +78,9 @@ export default defineComponent({
   &__img__wrapper {
     overflow: hidden;
     height: 0;
-    padding-bottom: 33.9%;
+    padding-bottom: 37.09%;
 
-    .item_img {
+    .item__img {
       width: 100%;
     }
   }
