@@ -28,7 +28,7 @@ export default defineComponent({
   },
   setup(props) {
     const { iconList } = toRefs(props);
-    const { slide } = useSlide(iconList);
+    const { slide } = useSlide(iconList, false);
     const pages = computed(() => {
       const result: ListItem[][] = [];
       iconList.value.forEach((item, index) => {

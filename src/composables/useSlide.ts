@@ -14,7 +14,7 @@ interface SlideRet {
   currentPageIndex: Ref<number>;
 }
 
-export default function useSlide(list: Ref<ListItem[]>): SlideRet {
+export default function useSlide(list: Ref<ListItem[]>, loop = true): SlideRet {
   const slide = ref();
   const currentPageIndex = ref(0);
   watch(
@@ -26,7 +26,7 @@ export default function useSlide(list: Ref<ListItem[]>): SlideRet {
           scrollX: true,
           scrollY: false,
           slide: {
-            loop: true,
+            loop,
             autoplay: false,
           },
           momentum: false,
