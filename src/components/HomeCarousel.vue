@@ -21,27 +21,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType, toRefs } from "vue";
 import useSlide from "../composables/useSlide";
-
-const swiperList = [
-  {
-    id: "0001",
-    imgUrl:
-      "http://img1.qunarzz.com/piao/fusion/1801/1a/94428c6dea109402.jpg_640x200_2cf590d8.jpg",
-  },
-  {
-    id: "0002",
-    imgUrl:
-      "http://img1.qunarzz.com/piao/fusion/1802/42/7c92b9a381e46402.jpg_640x200_1cdce2a4.jpg",
-  },
-];
+import { ListItem } from "../common/interfaces";
 
 export default defineComponent({
-  setup() {
-    const { slide, currentPageIndex } = useSlide();
+  props: {
+    swiperList: {
+      type: Array as PropType<ListItem[]>,
+      required: true,
+    },
+  },
+  setup(props) {
+    const { slide, currentPageIndex } = useSlide(toRefs(props).swiperList);
     return {
-      swiperList,
       slide,
       currentPageIndex,
     };
