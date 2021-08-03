@@ -1,65 +1,78 @@
 <template>
-  <div class="list">
-    <div class="list__area">
-      <div class="title border-topbottom">当前城市</div>
-      <div class="button-list">
-        <div class="button-wrapper">
-          <div class="button">北京</div>
+  <div class="list" ref="wrapper">
+    <div>
+      <div class="list__area">
+        <div class="title border-topbottom">当前城市</div>
+        <div class="button-list">
+          <div class="button-wrapper">
+            <div class="button">北京</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="list__area">
-      <div class="title border-topbottom">热门城市</div>
-      <div class="button-list">
-        <div class="button-wrapper">
-          <div class="button">北京</div>
-        </div>
-        <div class="button-wrapper">
-          <div class="button">北京</div>
-        </div>
-        <div class="button-wrapper">
-          <div class="button">北京</div>
-        </div>
-        <div class="button-wrapper">
-          <div class="button">北京</div>
+      <div class="list__area">
+        <div class="title border-topbottom">热门城市</div>
+        <div class="button-list">
+          <div class="button-wrapper">
+            <div class="button">北京</div>
+          </div>
+          <div class="button-wrapper">
+            <div class="button">北京</div>
+          </div>
+          <div class="button-wrapper">
+            <div class="button">北京</div>
+          </div>
+          <div class="button-wrapper">
+            <div class="button">北京</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="list__area">
-      <div class="title border-topbottom">A</div>
-      <div class="item-list">
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
+      <div class="list__area">
+        <div class="title border-topbottom">A</div>
+        <div class="item-list">
+          <div class="item border-bottom">阿拉尔</div>
+          <div class="item border-bottom">阿拉尔</div>
+          <div class="item border-bottom">阿拉尔</div>
+          <div class="item border-bottom">阿拉尔</div>
+        </div>
       </div>
-    </div>
-    <div class="list__area">
-      <div class="title border-topbottom">A</div>
-      <div class="item-list">
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
+      <div class="list__area">
+        <div class="title border-topbottom">A</div>
+        <div class="item-list">
+          <div class="item border-bottom">阿拉尔</div>
+          <div class="item border-bottom">阿拉尔</div>
+          <div class="item border-bottom">阿拉尔</div>
+          <div class="item border-bottom">阿拉尔</div>
+        </div>
       </div>
-    </div>
-    <div class="list__area">
-      <div class="title border-topbottom">A</div>
-      <div class="item-list">
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
+      <div class="list__area">
+        <div class="title border-topbottom">A</div>
+        <div class="item-list">
+          <div class="item border-bottom">阿拉尔</div>
+          <div class="item border-bottom">阿拉尔</div>
+          <div class="item border-bottom">阿拉尔</div>
+          <div class="item border-bottom">阿拉尔</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
+import BScroll from "@better-scroll/core";
 
 export default defineComponent({
   name: "CityList",
+  setup() {
+    const wrapper = ref();
+    onMounted(() => {
+      new BScroll(wrapper.value);
+    });
+
+    return {
+      wrapper,
+    };
+  },
 });
 </script>
 
