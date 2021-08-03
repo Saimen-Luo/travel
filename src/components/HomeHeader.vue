@@ -7,10 +7,12 @@
       <i class="iconfont">&#xe632;</i>
       输入城市/景点/游玩主题
     </div>
-    <div class="header__right">
-      城市
-      <i class="iconfont header__right__icon">&#xe64a;</i>
-    </div>
+    <router-link to="/city">
+      <div class="header__right">
+        城市
+        <i class="iconfont header__right__icon">&#xe64a;</i>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -28,7 +30,7 @@ export default defineComponent({
 .header {
   display: flex;
   justify-content: space-between;
-  line-height: 0.86rem;
+  line-height: $headerHeight;
   background-color: $bgColor;
   color: #fff;
 
@@ -57,6 +59,7 @@ export default defineComponent({
     width: 1.24rem;
     text-align: center;
     margin-top: 0.02rem;
+    color: #fff;
 
     &__icon {
       font-size: 0.24rem;
