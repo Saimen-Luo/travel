@@ -22,7 +22,16 @@
         v-for="(alphabetCities, key) in cities"
         :key="key"
       >
-        <div class="title border-topbottom">{{ key }}</div>
+        <div
+          class="title border-topbottom"
+          :ref="
+            (el) => {
+              if (el) alphabets[key] = el;
+            }
+          "
+        >
+          {{ key }}
+        </div>
         <div class="item-list">
           <div
             class="item border-bottom"
@@ -38,10 +47,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch, ref, PropType, nextTick } from "vue";
+import {
+  defineComponent,
+  watch,
+  ref,
+  PropType,
+  nextTick,
+  onBeforeUpdate,
+} from "vue";
 import BScroll from "@better-scroll/core";
+import { useStore } from "vuex";
 
 import { City, AlphabetCities } from "@/common/interfaces";
+import { GlobalState } from "@/store";
 
 export default defineComponent({
   name: "CityList",
@@ -57,18 +75,29 @@ export default defineComponent({
   },
   setup(props) {
     const wrapper = ref();
+    const scroll = ref();
+    const alphabets = ref<{ [key: string]: HTMLElement }>({});
+    const store = useStore<GlobalState>();
     watch(
-      () => props.cities,
-      async (current) => {
-        if (Object.keys(current).length) {
+      [() => props.cities, () => store.state.clickedLetter],
+      async ([currentCities, currentLetter]) => {
+        if (Object.keys(currentCities).length) {
           await nextTick();
-          new BScroll(wrapper.value);
+          scroll.value = new BScroll(wrapper.value);
+        }
+        if (currentLetter) {
+          // console.log(currentLetter);
+          scroll.value.scrollToElement(alphabets.value[currentLetter]);
         }
       }
     );
+    onBeforeUpdate(() => {
+      alphabets.value = {};
+    });
 
     return {
       wrapper,
+      alphabets,
     };
   },
 });

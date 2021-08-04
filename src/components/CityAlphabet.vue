@@ -1,13 +1,22 @@
 <template>
   <div class="list">
-    <div class="item" v-for="(item, key) in cities" :key="key">{{ key }}</div>
+    <div
+      class="item"
+      v-for="(item, key) in cities"
+      :key="key"
+      @click="handleLetterClick"
+    >
+      {{ key }}
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
+import { useStore } from "vuex";
 
 import { AlphabetCities } from "@/common/interfaces";
+import { GlobalState } from "@/store";
 
 export default defineComponent({
   name: "CityAlphabet",
@@ -16,6 +25,17 @@ export default defineComponent({
       type: Object as PropType<AlphabetCities>,
       required: true,
     },
+  },
+  setup() {
+    const store = useStore<GlobalState>();
+    const handleLetterClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      // console.log(target.innerText);
+      store.commit("changeLetter", target.innerText);
+    };
+    return {
+      handleLetterClick,
+    };
   },
 });
 </script>
