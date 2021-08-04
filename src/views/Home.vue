@@ -17,18 +17,13 @@ import HomeCarousel from "../components/HomeCarousel.vue";
 import HomeNav from "../components/HomeNav.vue";
 import HomeRecommend from "../components/HomeRecommend.vue";
 import HomeWeekend from "../components/HomeWeekend.vue";
-import { ListItem } from "../common/interfaces";
+import { ListItem, Response } from "../common/interfaces";
 
 interface ResponseData {
   iconList: ListItem[];
   recommendList: ListItem[];
   swiperList: ListItem[];
   weekendList: ListItem[];
-}
-
-interface Response {
-  ret: boolean;
-  data: ResponseData;
 }
 
 export default defineComponent({
@@ -49,7 +44,7 @@ export default defineComponent({
       axios
         .get("/api/index.json")
         .then((response) => {
-          let data: Response = response.data;
+          let data: Response<ResponseData> = response.data;
           // console.log(data);
           if (data.ret) {
             const d = data.data;

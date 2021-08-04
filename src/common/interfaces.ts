@@ -4,3 +4,18 @@ export interface ListItem {
   desc?: string;
   title?: string;
 }
+
+export interface Response<T> {
+  ret: boolean;
+  data: T;
+}
+
+export interface City {
+  id: number;
+  name: string;
+  spell: string;
+}
+
+export interface AlphabetCities {
+  [key: string]: City[];
+}

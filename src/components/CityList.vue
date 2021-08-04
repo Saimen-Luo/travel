@@ -12,45 +12,25 @@
       <div class="list__area">
         <div class="title border-topbottom">热门城市</div>
         <div class="button-list">
-          <div class="button-wrapper">
-            <div class="button">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="button">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="button">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="button">北京</div>
+          <div class="button-wrapper" v-for="item in hotCities" :key="item.id">
+            <div class="button">{{ item.name }}</div>
           </div>
         </div>
       </div>
-      <div class="list__area">
-        <div class="title border-topbottom">A</div>
+      <div
+        class="list__area"
+        v-for="(alphabetCities, key) in cities"
+        :key="key"
+      >
+        <div class="title border-topbottom">{{ key }}</div>
         <div class="item-list">
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-        </div>
-      </div>
-      <div class="list__area">
-        <div class="title border-topbottom">A</div>
-        <div class="item-list">
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-        </div>
-      </div>
-      <div class="list__area">
-        <div class="title border-topbottom">A</div>
-        <div class="item-list">
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
+          <div
+            class="item border-bottom"
+            v-for="(city, index) in alphabetCities"
+            :key="index"
+          >
+            {{ city.name }}
+          </div>
         </div>
       </div>
     </div>
@@ -58,16 +38,34 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, watch, ref, PropType, nextTick } from "vue";
 import BScroll from "@better-scroll/core";
+
+import { City, AlphabetCities } from "@/common/interfaces";
 
 export default defineComponent({
   name: "CityList",
-  setup() {
+  props: {
+    cities: {
+      type: Object as PropType<AlphabetCities>,
+      required: true,
+    },
+    hotCities: {
+      type: Array as PropType<City[]>,
+      required: true,
+    },
+  },
+  setup(props) {
     const wrapper = ref();
-    onMounted(() => {
-      new BScroll(wrapper.value);
-    });
+    watch(
+      () => props.cities,
+      async (current) => {
+        if (Object.keys(current).length) {
+          await nextTick();
+          new BScroll(wrapper.value);
+        }
+      }
+    );
 
     return {
       wrapper,

@@ -1,16 +1,22 @@
 <template>
   <div class="list">
-    <div class="item">A</div>
-    <div class="item">A</div>
-    <div class="item">A</div>
+    <div class="item" v-for="(item, key) in cities" :key="key">{{ key }}</div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
+
+import { AlphabetCities } from "@/common/interfaces";
 
 export default defineComponent({
   name: "CityAlphabet",
+  props: {
+    cities: {
+      type: Object as PropType<AlphabetCities>,
+      required: true,
+    },
+  },
 });
 </script>
 
