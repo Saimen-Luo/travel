@@ -9,7 +9,12 @@
   </div>
   <div class="search__content" v-if="keyword" ref="wrapper">
     <ul>
-      <li class="item borden-bottom" v-for="item in list" :key="item.id">
+      <li
+        class="item borden-bottom"
+        v-for="item in list"
+        :key="item.id"
+        @click="handleCityClick(item.name)"
+      >
         {{ item.name }}
       </li>
       <li class="item borden-bottom" v-if="!list.length">没有找到匹配数据</li>
@@ -22,6 +27,7 @@ import { defineComponent, ref, PropType, computed, watch, nextTick } from "vue";
 import BScroll from "@better-scroll/core";
 
 import { AlphabetCities, City } from "@/common/interfaces";
+import useCommonStore from "@/composables/useCommonStore";
 
 export default defineComponent({
   name: "CitySearch",
@@ -34,6 +40,10 @@ export default defineComponent({
   setup(props) {
     const keyword = ref("");
     const wrapper = ref();
+    const store = useCommonStore();
+    const handleCityClick = (city: string) => {
+      store.commit("changeCity", city);
+    };
     const list = computed(() => {
       const result: City[] = [];
       if (keyword.value) {
@@ -55,7 +65,7 @@ export default defineComponent({
       async (current) => {
         if (current.length) {
           await nextTick();
-          new BScroll(wrapper.value);
+          new BScroll(wrapper.value, { click: true });
         }
       }
     );
@@ -63,6 +73,7 @@ export default defineComponent({
       keyword,
       list,
       wrapper,
+      handleCityClick,
     };
   },
 });

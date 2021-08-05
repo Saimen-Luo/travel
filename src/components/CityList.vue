@@ -5,14 +5,19 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">北京</div>
+            <div class="button">{{ store.state.city }}</div>
           </div>
         </div>
       </div>
       <div class="list__area">
         <div class="title border-topbottom">热门城市</div>
         <div class="button-list">
-          <div class="button-wrapper" v-for="item in hotCities" :key="item.id">
+          <div
+            class="button-wrapper"
+            v-for="item in hotCities"
+            :key="item.id"
+            @click="handleCityClick(item.name)"
+          >
             <div class="button">{{ item.name }}</div>
           </div>
         </div>
@@ -37,6 +42,7 @@
             class="item border-bottom"
             v-for="(city, index) in alphabetCities"
             :key="index"
+            @click="handleCityClick(city.name)"
           >
             {{ city.name }}
           </div>
@@ -77,12 +83,17 @@ export default defineComponent({
     const scroll = ref();
     const alphabets = ref<{ [key: string]: HTMLElement }>({});
     const store = useCommonStore();
+    // handleCityClick 无法触发？需要 配置 BScroll { click: true }
+    const handleCityClick = (city: string) => {
+      // console.log("click");
+      store.commit("changeCity", city);
+    };
     watch(
       [() => props.cities, () => store.state.clickedLetter],
       async ([currentCities, currentLetter]) => {
         if (Object.keys(currentCities).length) {
           await nextTick();
-          scroll.value = new BScroll(wrapper.value);
+          scroll.value = new BScroll(wrapper.value, { click: true });
         }
         if (currentLetter) {
           // console.log(currentLetter);
@@ -97,6 +108,8 @@ export default defineComponent({
     return {
       wrapper,
       alphabets,
+      store,
+      handleCityClick,
     };
   },
 });
