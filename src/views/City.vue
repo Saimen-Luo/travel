@@ -1,6 +1,6 @@
 <template>
   <city-header />
-  <city-search />
+  <city-search :cities="cities" />
   <city-list :cities="cities" :hotCities="hotCities" />
   <city-alphabet :cities="cities" />
 </template>
