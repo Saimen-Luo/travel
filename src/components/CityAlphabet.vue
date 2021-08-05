@@ -22,10 +22,9 @@
 
 <script lang="ts">
 import { computed, defineComponent, watch, nextTick, PropType, ref } from "vue";
-import { useStore } from "vuex";
 
 import { AlphabetCities } from "@/common/interfaces";
-import { GlobalState } from "@/store";
+import useCommonStore from "@/composables/useCommonStore";
 
 export default defineComponent({
   name: "CityAlphabet",
@@ -41,7 +40,7 @@ export default defineComponent({
     const startY = ref(0);
     const timer = ref();
     const letters = computed(() => Object.keys(props.cities));
-    const store = useStore<GlobalState>();
+    const store = useCommonStore();
     watch(
       () => letters.value,
       async () => {

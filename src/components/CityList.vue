@@ -56,10 +56,9 @@ import {
   onBeforeUpdate,
 } from "vue";
 import BScroll from "@better-scroll/core";
-import { useStore } from "vuex";
 
 import { City, AlphabetCities } from "@/common/interfaces";
-import { GlobalState } from "@/store";
+import useCommonStore from "@/composables/useCommonStore";
 
 export default defineComponent({
   name: "CityList",
@@ -77,7 +76,7 @@ export default defineComponent({
     const wrapper = ref();
     const scroll = ref();
     const alphabets = ref<{ [key: string]: HTMLElement }>({});
-    const store = useStore<GlobalState>();
+    const store = useCommonStore();
     watch(
       [() => props.cities, () => store.state.clickedLetter],
       async ([currentCities, currentLetter]) => {

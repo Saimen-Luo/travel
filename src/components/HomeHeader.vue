@@ -9,7 +9,7 @@
     </div>
     <router-link to="/city">
       <div class="header__right">
-        城市
+        {{ store.state.city }}
         <i class="iconfont header__right__icon">&#xe64a;</i>
       </div>
     </router-link>
@@ -19,8 +19,16 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+import useCommonStore from "@/composables/useCommonStore";
+
 export default defineComponent({
   name: "HomeHeader",
+  setup() {
+    const store = useCommonStore();
+    return {
+      store,
+    };
+  },
 });
 </script>
 
