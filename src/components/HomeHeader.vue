@@ -64,9 +64,11 @@ export default defineComponent({
   }
 
   &__right {
-    width: 1.24rem;
+    min-width: 1.24rem;
     text-align: center;
     margin-top: 0.02rem;
+    margin-left: 0.04rem;
+    margin-right: 0.04rem;
     color: #fff;
 
     &__icon {
