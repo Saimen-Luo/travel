@@ -24,6 +24,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, PropType, computed, watch, nextTick } from "vue";
+import { useRouter } from "vue-router";
 import BScroll from "@better-scroll/core";
 
 import { AlphabetCities, City } from "@/common/interfaces";
@@ -40,9 +41,11 @@ export default defineComponent({
   setup(props) {
     const keyword = ref("");
     const wrapper = ref();
+    const router = useRouter();
     const store = useCommonStore();
     const handleCityClick = (city: string) => {
       store.commit("changeCity", city);
+      router.push("/");
     };
     const list = computed(() => {
       const result: City[] = [];

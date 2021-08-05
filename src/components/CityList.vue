@@ -62,6 +62,7 @@ import {
   onBeforeUpdate,
 } from "vue";
 import BScroll from "@better-scroll/core";
+import { useRouter } from "vue-router";
 
 import { City, AlphabetCities } from "@/common/interfaces";
 import useCommonStore from "@/composables/useCommonStore";
@@ -81,12 +82,14 @@ export default defineComponent({
   setup(props) {
     const wrapper = ref();
     const scroll = ref();
+    const router = useRouter();
     const alphabets = ref<{ [key: string]: HTMLElement }>({});
     const store = useCommonStore();
     // handleCityClick 无法触发？需要 配置 BScroll { click: true }
     const handleCityClick = (city: string) => {
       // console.log("click");
       store.commit("changeCity", city);
+      router.push("/");
     };
     watch(
       [() => props.cities, () => store.state.clickedLetter],
