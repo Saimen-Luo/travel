@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    城市选择
+    <slot />
     <router-link to="/">
       <i class="iconfont header__left__icon">&#xe624;</i>
     </router-link>
@@ -11,7 +11,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "CityHeader",
+  name: "CommonHeader",
   setup() {
     return {};
   },
@@ -22,7 +22,11 @@ export default defineComponent({
 @import '~styles/variables.styl';
 
 .header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
   height: $headerHeight;
   line-height: $headerHeight;
   text-align: center;

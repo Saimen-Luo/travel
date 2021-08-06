@@ -1,5 +1,5 @@
 <template>
-  <city-header />
+  <common-header>城市选择</common-header>
   <city-search :cities="cities" />
   <city-list :cities="cities" :hotCities="hotCities" />
   <city-alphabet :cities="cities" />
@@ -9,7 +9,7 @@
 import { defineComponent, onMounted, ref } from "vue";
 import axios from "axios";
 
-import CityHeader from "@/components/CityHeader.vue";
+import CommonHeader from "@/components/CommonHeader.vue";
 import CitySearch from "@/components/CitySearch.vue";
 import CityList from "@/components/CityList.vue";
 import CityAlphabet from "@/components/CityAlphabet.vue";
@@ -23,7 +23,7 @@ interface ResponseData {
 export default defineComponent({
   name: "City",
   components: {
-    CityHeader,
+    CommonHeader,
     CitySearch,
     CityList,
     CityAlphabet,
