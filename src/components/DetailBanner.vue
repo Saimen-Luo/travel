@@ -9,22 +9,26 @@
       </div>
     </div>
   </div>
-  <gallery
-    :galleryImgs="galleryImgs"
-    v-if="showGallery"
-    @closeGallery="onCloseGallery"
-  />
+  <Fade>
+    <gallery
+      :galleryImgs="galleryImgs"
+      v-if="showGallery"
+      @closeGallery="onCloseGallery"
+    />
+  </Fade>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, ref } from "vue";
 
 import Gallery from "@/components/Gallery.vue";
+import Fade from "@/components/Fade.vue";
 
 export default defineComponent({
   name: "DetailBanner",
   components: {
     Gallery,
+    Fade,
   },
   props: {
     sightName: {
