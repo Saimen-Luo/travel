@@ -1,7 +1,9 @@
 <template>
   <detail-header />
   <detail-banner :galleryImgs="galleryImgs" />
-  <div class="content"></div>
+  <div class="content">
+    <detail-list :categoryList="categoryList" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -11,12 +13,8 @@ import { useRoute } from "vue-router";
 
 import DetailBanner from "@/components/DetailBanner.vue";
 import DetailHeader from "@/components/DetailHeader.vue";
-import { Response } from "@/common/interfaces";
-
-interface Category {
-  title: string;
-  childern?: Category[];
-}
+import DetailList from "@/components/DetailList.vue";
+import { Response, Category } from "@/common/interfaces";
 
 interface ResponseData {
   sightName: string;
@@ -30,10 +28,12 @@ export default defineComponent({
   components: {
     DetailBanner,
     DetailHeader,
+    DetailList,
   },
   setup() {
     const route = useRoute();
     const galleryImgs = ref<string[]>([]);
+    const categoryList = ref<Category[]>([]);
     const getDetailInfo = () => {
       axios
         .get("/api/detail.json", {
@@ -47,6 +47,7 @@ export default defineComponent({
           if (data.ret) {
             const d = data.data;
             galleryImgs.value = d.galleryImgs;
+            categoryList.value = d.categoryList;
           }
         })
         .catch((error) => {
@@ -58,6 +59,7 @@ export default defineComponent({
     });
     return {
       galleryImgs,
+      categoryList,
     };
   },
 });

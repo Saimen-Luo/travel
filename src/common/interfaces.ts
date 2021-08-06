@@ -23,3 +23,8 @@ export interface AlphabetCities {
 export interface Page {
   pageX: number;
 }
+
+export interface Category {
+  title: string;
+  childern?: Category[];
+}
