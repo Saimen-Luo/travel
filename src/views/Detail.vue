@@ -1,6 +1,10 @@
 <template>
   <detail-header />
-  <detail-banner :galleryImgs="galleryImgs" />
+  <detail-banner
+    :sightName="sightName"
+    :bannerImg="bannerImg"
+    :galleryImgs="galleryImgs"
+  />
   <div class="content">
     <detail-list :categoryList="categoryList" />
   </div>
@@ -34,6 +38,8 @@ export default defineComponent({
     const route = useRoute();
     const galleryImgs = ref<string[]>([]);
     const categoryList = ref<Category[]>([]);
+    const sightName = ref("");
+    const bannerImg = ref("");
     const getDetailInfo = () => {
       axios
         .get("/api/detail.json", {
@@ -48,6 +54,8 @@ export default defineComponent({
             const d = data.data;
             galleryImgs.value = d.galleryImgs;
             categoryList.value = d.categoryList;
+            sightName.value = d.sightName;
+            bannerImg.value = d.bannerImg;
           }
         })
         .catch((error) => {
@@ -60,6 +68,8 @@ export default defineComponent({
     return {
       galleryImgs,
       categoryList,
+      sightName,
+      bannerImg,
     };
   },
 });

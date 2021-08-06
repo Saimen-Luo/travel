@@ -1,15 +1,11 @@
 <template>
   <div class="banner" @click="handleBannerClick">
-    <img
-      class="banner__img"
-      src="http://img1.qunarzz.com/sight/p0/201404/23/04b92c99462687fa1ba45c1b5ba4ad77.jpg_600x330_bf9c4904.jpg"
-      alt="banner-img"
-    />
+    <img class="banner__img" :src="bannerImg" alt="banner-img" />
     <div class="banner__info">
-      <div class="info__title">大连圣亚海洋世界(AAAA景区)</div>
+      <div class="info__title">{{ sightName }}</div>
       <div class="info__number">
         <i class="iconfont img-icon">&#xe692;</i>
-        39
+        {{ galleryImgs.length }}
       </div>
     </div>
   </div>
@@ -31,6 +27,14 @@ export default defineComponent({
     Gallery,
   },
   props: {
+    sightName: {
+      type: String,
+      required: true,
+    },
+    bannerImg: {
+      type: String,
+      required: true,
+    },
     galleryImgs: {
       type: Array as PropType<string[]>,
       required: true,
