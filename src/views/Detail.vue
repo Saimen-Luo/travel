@@ -11,13 +11,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, defineAsyncComponent } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
 
 import DetailBanner from "@/components/DetailBanner.vue";
 import DetailHeader from "@/components/DetailHeader.vue";
-import DetailList from "@/components/DetailList.vue";
 import { Response, Category } from "@/common/interfaces";
 
 interface ResponseData {
@@ -32,7 +31,9 @@ export default defineComponent({
   components: {
     DetailBanner,
     DetailHeader,
-    DetailList,
+    DetailList: defineAsyncComponent(
+      () => import("@/components/DetailList.vue")
+    ),
   },
   setup() {
     const route = useRoute();
