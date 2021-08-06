@@ -1,13 +1,9 @@
 import { watch, ref, Ref, nextTick } from "vue";
 import BScroll from "@better-scroll/core";
 import Slide from "@better-scroll/slide";
-import { ListItem } from "../common/interfaces";
+import { ListItem, Page } from "../common/interfaces";
 
 BScroll.use(Slide);
-
-interface page {
-  pageX: number;
-}
 
 interface SlideRet {
   slide: Ref<HTMLElement>;
@@ -33,7 +29,7 @@ export default function useSlide(list: Ref<ListItem[]>, loop = true): SlideRet {
           bounce: false,
           probeType: 3,
         });
-        scroll.on("slideWillChange", (page: page) => {
+        scroll.on("slideWillChange", (page: Page) => {
           currentPageIndex.value = page.pageX;
         });
       }

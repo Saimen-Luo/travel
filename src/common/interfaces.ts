@@ -19,3 +19,7 @@ export interface City {
 export interface AlphabetCities {
   [key: string]: City[];
 }
+
+export interface Page {
+  pageX: number;
+}

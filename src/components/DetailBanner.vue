@@ -1,5 +1,5 @@
 <template>
-  <div class="banner">
+  <div class="banner" @click="handleBannerClick">
     <img
       class="banner__img"
       src="http://img1.qunarzz.com/sight/p0/201404/23/04b92c99462687fa1ba45c1b5ba4ad77.jpg_600x330_bf9c4904.jpg"
@@ -13,13 +13,43 @@
       </div>
     </div>
   </div>
+  <gallery
+    :galleryImgs="galleryImgs"
+    v-if="showGallery"
+    @closeGallery="onCloseGallery"
+  />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType, ref } from "vue";
+
+import Gallery from "@/components/Gallery.vue";
 
 export default defineComponent({
   name: "DetailBanner",
+  components: {
+    Gallery,
+  },
+  props: {
+    galleryImgs: {
+      type: Array as PropType<string[]>,
+      required: true,
+    },
+  },
+  setup() {
+    const showGallery = ref(false);
+    const handleBannerClick = () => {
+      showGallery.value = true;
+    };
+    const onCloseGallery = () => {
+      showGallery.value = false;
+    };
+    return {
+      showGallery,
+      handleBannerClick,
+      onCloseGallery,
+    };
+  },
 });
 </script>
 
