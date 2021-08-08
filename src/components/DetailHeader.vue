@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onActivated, onDeactivated, ref } from "vue";
+import { defineComponent, onMounted, onUnmounted, ref } from "vue";
 
 import CommonHeader from "@/components/CommonHeader.vue";
 
@@ -33,10 +33,10 @@ export default defineComponent({
         showAbs.value = true;
       }
     };
-    onActivated(() => {
+    onMounted(() => {
       window.addEventListener("scroll", handleScroll);
     });
-    onDeactivated(() => {
+    onUnmounted(() => {
       window.removeEventListener("scroll", handleScroll);
     });
     return {
