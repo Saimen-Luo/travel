@@ -7,6 +7,17 @@ const routes: Array<RouteRecordRaw> = [
     name: "Home",
     component: Home,
   },
+  {
+    path: "/city",
+    name: "City",
+    component: () => import(/* webpackChunkName: "City" */ "@/views/City.vue"),
+  },
+  {
+    path: "/detail/:id",
+    name: "Detail",
+    component: () =>
+      import(/* webpackChunkName: "Detail" */ "@/views/Detail.vue"),
+  },
   // {
   //   path: "/about",
   //   name: "About",
@@ -21,6 +32,10 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior() {
+    // 始终滚动到顶部
+    return { top: 0 };
+  },
 });
 
 export default router;
