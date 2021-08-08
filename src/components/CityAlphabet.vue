@@ -2,11 +2,11 @@
   <div class="list">
     <div
       class="item"
-      v-for="(item, index) in letters"
+      v-for="item in letters"
       :key="item"
-      :class="{ 'item--current': currentIndex == index }"
       @click="handleLetterClick"
       @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
       :ref="
         (el) => {
           if (el) {
@@ -17,6 +17,9 @@
     >
       {{ item }}
     </div>
+  </div>
+  <div class="current" v-if="currentIndex !== undefined">
+    {{ letters[currentIndex] }}
   </div>
 </template>
 
@@ -53,6 +56,7 @@ export default defineComponent({
       // console.log(target.innerText);
       store.commit("changeLetter", target.innerText);
       currentIndex.value = letters.value.indexOf(target.innerText);
+      handleTouchEnd();
     };
     const handleTouchMove = (e: TouchEvent) => {
       if (timer.value) {
@@ -79,7 +83,12 @@ export default defineComponent({
         if (letter) {
           store.commit("changeLetter", letter);
         }
-      }, 20);
+      }, 15);
+    };
+    const handleTouchEnd = () => {
+      setTimeout(() => {
+        currentIndex.value = undefined;
+      }, 1000);
     };
     return {
       letters,
@@ -87,6 +96,7 @@ export default defineComponent({
       currentIndex,
       handleLetterClick,
       handleTouchMove,
+      handleTouchEnd,
     };
   },
 });
@@ -108,11 +118,19 @@ export default defineComponent({
   .item {
     text-align: center;
     line-height: 0.4rem;
-
-    &--current {
-      color: $bgColor;
-      // transform: translateX(-0.1rem);
-    }
   }
+}
+
+.current {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 </style>
