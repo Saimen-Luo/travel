@@ -60,7 +60,8 @@ export default defineComponent({
     };
     const handleTouchMove = (e: TouchEvent) => {
       if (timer.value) {
-        clearTimeout(timer.value);
+        // clearTimeout(timer.value);
+        return;
       }
       timer.value = setTimeout(() => {
         // 只有 touchmove 事件e.touches有值
@@ -83,7 +84,8 @@ export default defineComponent({
         if (letter) {
           store.commit("changeLetter", letter);
         }
-      }, 15);
+        timer.value = null;
+      }, 200);
     };
     const handleTouchEnd = () => {
       setTimeout(() => {
