@@ -86,6 +86,7 @@ export default defineComponent({
 @import '~styles/variables.styl';
 
 .search {
+  margin-top: 0.86rem;
   height: 0.72rem;
   padding: 0 0.1rem;
   background: $bgColor;
