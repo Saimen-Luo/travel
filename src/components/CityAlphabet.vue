@@ -18,8 +18,8 @@
       {{ item }}
     </div>
   </div>
-  <div class="current" v-if="currentIndex !== undefined">
-    {{ letters[currentIndex] }}
+  <div class="current" v-show="show_current">
+    {{ currentIndex !== undefined ? letters[currentIndex] : "" }}
   </div>
 </template>
 
@@ -44,6 +44,11 @@ export default defineComponent({
     const timer = ref();
     const letters = computed(() => Object.keys(props.cities));
     const store = useCommonStore();
+    const show_current = computed(() => {
+      return (
+        currentIndex.value !== undefined && letters.value[currentIndex.value]
+      );
+    });
     watch(
       () => letters.value,
       async () => {
@@ -96,6 +101,7 @@ export default defineComponent({
       letters,
       alphabets,
       currentIndex,
+      show_current,
       handleLetterClick,
       handleTouchMove,
       handleTouchEnd,
